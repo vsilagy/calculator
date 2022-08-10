@@ -1,0 +1,90 @@
+:root {
+  --bg-color: hsl(222, 26%, 31%);
+  --screen-color: hsl(224, 36%, 15%);
+  --key-bg: hsl(223, 31%, 20%);
+  --key-blue: hsl(225, 21%, 49%);
+  --key-red: hsl(6, 63%, 50%);
+  --key-light: hsl(30, 25%, 89%);
+  --blue-font: hsl(221, 14%, 31%);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Spartan", sans-serif;
+  font-weight: 700;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1 {
+  color: var(--key-light);
+}
+
+.output {
+  background-color: var(--screen-color);
+  color: var(--key-light);
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 2rem;
+  padding: 10px 16px 0;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+}
+
+.calc-keys {
+  background-color: var(--key-bg);
+  display: grid;
+  align-content: center;
+  grid-template-columns: repeat(4, 75px);
+  grid-template-rows: repeat(5, 45px);
+  padding: 1rem;
+  border-radius: 8px;
+  gap: 12px;
+}
+
+.calc-keys > button {
+  font-size: 1.5rem;
+  background-color: var(--key-light);
+  color: var(--blue-font);
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.calc-keys > button:hover {
+  opacity: 0.8;
+}
+
+#del {
+  background-color: var(--key-blue);
+  color: var(--key-light);
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+#reset {
+  grid-column: span 2;
+  background-color: var(--key-blue);
+  color: var(--key-light);
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+#equal {
+  grid-column: span 2;
+  background-color: var(--key-red);
+  color: var(--key-light);
+  font-size: 1rem;
+}
