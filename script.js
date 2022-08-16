@@ -8,7 +8,15 @@ const deleteButton = keys.querySelector("[data-delete]");
 const resetButton = keys.querySelector("[data-reset]");
 
 keys.addEventListener("click", (event) => {
+  if (!event.target.closest("button")) return;
+
   const key = event.target;
-  const keyValue = event.textContent;
+  const keyValue = key.textContent;
   const displayValue = display.textContent;
+
+  if (displayValue === "0") {
+    display.textContent = keyValue;
+  } else {
+    display.textContent = displayValue + keyValue;
+  }
 });
