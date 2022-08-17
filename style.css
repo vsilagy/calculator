@@ -116,24 +116,25 @@ h1 {
 
 #clear {
   grid-area: clear;
-  background-color: var(--key-blue);
-  color: var(--key-light);
 }
 
 #equal {
   grid-area: equal;
-  background-color: var(--key-red);
+  background: var(--key-red);
   color: var(--key-light);
   font-size: 1rem;
 }
 
 [data-type="operator"]:active,
-[data-type="number"]:active,
-#equal:active {
+[data-type="clear"]:active {
+  background: var(--key-red);
+}
+
+[data-type="number"]:active {
   background: var(--key-blue);
 }
 
-#clear:active {
+[data-state="selected"] {
   background: var(--key-red);
 }
 
