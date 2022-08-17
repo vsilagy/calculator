@@ -124,29 +124,18 @@ h1 {
   grid-area: equal;
   background-color: var(--key-red);
   color: var(--key-light);
+  font-size: 1rem;
 }
 
-/* #del {
-  background-color: var(--key-blue);
-  color: var(--key-light);
-  font-size: 1rem;
-  text-transform: uppercase;
+[data-type="operator"]:active,
+[data-type="number"]:active,
+#equal:active {
+  background: var(--key-blue);
 }
 
-#reset {
-  grid-column: span 2;
-  background-color: var(--key-blue);
-  color: var(--key-light);
-  font-size: 1rem;
-  text-transform: uppercase;
-} */
-
-/* #equal {
-  grid-column: span 2;
-  background-color: var(--key-red);
-  color: var(--key-light);
-  font-size: 1rem;
-} */
+#clear:active {
+  background: var(--key-red);
+}
 
 .footer {
   position: fixed;
