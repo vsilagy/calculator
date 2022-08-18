@@ -2,86 +2,103 @@ class Calculator {
   constructor(previousOperandTextEl, currentOperandTextEl) {
     this.previousOperandTextEl = previousOperandTextEl;
     this.currentOperandTextEl = currentOperandTextEl;
-    this.clear();
+    this.reset();
   }
 
-  clear() {
+  reset() {
     this.currentOperand = "";
     this.previousOperand = "";
     this.operation = undefined;
   }
 
-  delete() {}
+  delete() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+  }
 
-  appendNumber(number) {}
+  appendNumber(number) {
+    if (number === "." && this.currentOperand.includes(".")) return;
+    this.currentOperand = this.currentOperand.toString() + number.toString();
+  }
 
-  chooseOperation(operation) {}
+  chooseOperation(operation) {
+    if (this.currentOperand === "") return;
+    if (this.currentOperand !== "") {
+      this.compute();
+    }
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = "";
+  }
 
-  compute() {}
+  compute() {
+    let computation;
+    const prev = parseFloat(this.previousOperand);
+    const current = parseFloat(this.currentOperand);
+    if (isNaN(prev) || isNaN(current)) return;
+    switch (this.operation) {
+      case "+":
+        computation = prev + current;
+        break;
+      case "-":
+        computation = prev - current;
+        break;
+      case "×":
+        computation = prev * current;
+        break;
+      case "÷":
+        computation = prev / current;
+        break;
+      default:
+        return;
+    }
 
-  updateDisplay() {}
+    this.currentOperand = computation;
+    this.operation = undefined;
+    this.previousOperand = "";
+  }
+
+  updateDisplay() {
+    this.currentOperandTextEl.innerText = this.currentOperand;
+    this.previousOperandTextEl.innerText = this.previousOperand;
+  }
 }
 
 const calcKeys = document.querySelector(".calc-keys");
-const numKeys = calculator.querySelectorAll(["data-number"]);
-const operationKeys = calculator.querySelectorAll(["data-operation"]);
-const equalKey = calculator.querySelector(["data-equals"]);
-const deleteKey = calculator.querySelector(["data-delete"]);
-const resetKey = calculator.querySelector(["data-reset"]);
-const previousOperandTextEl = calculator.querySelector([
-  "data-previous-operand",
-]);
-const currentOperandTextEl = calculator.querySelector(["data-current-operand"]);
+const numKeys = calcKeys.querySelectorAll("[data-number]");
+const operationKeys = calcKeys.querySelectorAll("[data-operation]");
+const equalsKey = calcKeys.querySelector("[data-equals]");
+const deleteKey = calcKeys.querySelector("[data-delete]");
+const resetKey = calcKeys.querySelector("[data-reset]");
+const previousOperandTextEl = document.querySelector("[data-previous-operand]");
+const currentOperandTextEl = document.querySelector("[data-current-operand]");
 
-// keys.addEventListener("click", (event) => {
-//   if (!event.target.closest("button")) return;
+const calculator = new Calculator(previousOperandTextEl, currentOperandTextEl);
 
-//   const key = event.target;
-//   const keyValue = key.textContent;
-//   const displayValue = display.textContent;
-//   const { type } = key.dataset;
-//   const { previousKeyType } = calculator.dataset;
+numKeys.forEach((key) => {
+  key.addEventListener("click", () => {
+    calculator.appendNumber(key.innerText);
+    calculator.updateDisplay();
+  });
+});
 
-//   if (type === "number") {
-//     if (displayValue === "0" || previousKeyType === "operator") {
-//       display.textContent = keyValue;
-//     } else {
-//       display.textContent = displayValue + keyValue;
-//     }
-//   }
+operationKeys.forEach((key) => {
+  key.addEventListener("click", () => {
+    calculator.chooseOperation(key.innerText);
+    calculator.updateDisplay();
+  });
+});
 
-//   if (type === "operator") {
-//     operationKeys.forEach((e) => {
-//       e.dataset.state = "";
-//     });
-//     key.dataset.state = "selected";
+equalsKey.addEventListener("click", (key) => {
+  calculator.compute();
+  calculator.updateDisplay();
+});
 
-//     calculator.dataset.firstNumber = displayValue;
-//     calculator.dataset.operator = key.dataset.key;
-//   }
+resetKey.addEventListener("click", (key) => {
+  calculator.reset();
+  calculator.updateDisplay();
+});
 
-//   if (type === "equal") {
-//     const firstNumber = calculator.dataset.firstNumber;
-//     const operator = calculator.dataset.operator;
-//     const secondNumber = displayValue;
-//     display.textContent = calculate(firstNumber, operator, secondNumber);
-//   }
-
-//   if (type === "clear") {
-//     display.textContent = "0";
-//     delete calculator.dataset.firstNumber;
-//     delete calculator.dataset.operator;
-//   }
-
-//   calculator.dataset.previousKeyType = type;
-// });
-
-// function calculate(firstNumber, operator, secondNumber) {
-//   firstNumber = parseInt(firstNumber);
-//   secondNumber = parseInt(secondNumber);
-
-//   if (operator === "add") return firstNumber + secondNumber;
-//   if (operator === "subtract") return firstNumber - secondNumber;
-//   if (operator === "multiply") return firstNumber * secondNumber;
-//   if (operator === "divide") return firstNumber / secondNumber;
-// }
+deleteKey.addEventListener("click", (key) => {
+  calculator.delete();
+  calculator.updateDisplay();
+});
