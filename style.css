@@ -46,7 +46,6 @@ h1 {
 
 .display .previous-operand {
   font-size: 1.5rem;
-  color: whitesmoke;
 }
 
 .calc-keys {
@@ -71,9 +70,9 @@ h1 {
   cursor: pointer;
 }
 
-/* .calc-keys > button:hover {
+.calc-keys > button:hover {
   opacity: 0.8;
-} */
+}
 
 #del {
   background-color: var(--key-blue);
@@ -102,8 +101,7 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 100%;
-  padding: 5px;
+  padding: 0.5rem;
   font-size: 1rem;
   color: var(--key-light);
 }
