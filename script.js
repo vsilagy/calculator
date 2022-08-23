@@ -56,7 +56,7 @@ function calculate() {
   let computation;
   let prev = parseFloat(previousNum);
   let current = parseFloat(currentNum);
-  // if (isNaN(prev) || isNaN(current)) return;
+  if (isNaN(prev) || isNaN(current)) return;
   switch (operator) {
       case "+":
         computation = prev + current;
@@ -76,6 +76,10 @@ function calculate() {
   currentNum = computation;
   previousNum = "";
   operator = "";
+}
+
+function updateDisplay() {
+  // if the number is longer than 10 
 }
 
 function handleNumber(e) {
