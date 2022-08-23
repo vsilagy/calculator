@@ -27,20 +27,28 @@ operationKeys.forEach((key) => {
 });
 
 equalsKey.addEventListener("click", () => {
-  
+  if (currentValue !== "" && previousValue !== "") {
+    calculate();
+    previousDisplay.textContent = "";
+    currentDisplay.textContent = currentValue;
+  }
 });
 
 resetKey.addEventListener("click", () => {
-  
+  previousValue = "";
+  currentValue = "";
+  operator = "";
+  previousDisplay.textContent = currentValue;
+  currentDisplay.textContent = currentValue;
 });
 
 deleteKey.addEventListener("click", () => {
-  
+
 });
 
 
 function calculate() {
-  let computation
+  let computation;
   let prev = parseFloat(previousValue);
   let current = parseFloat(currentValue);
   if (isNaN(prev) || isNaN(current)) return;
@@ -60,8 +68,7 @@ function calculate() {
           default:
             return;
         }
-        console.log(computation)
-        currentValue = computation
+        currentValue = computation;
         previousValue = "";
         operator = "";
 }
@@ -74,4 +81,11 @@ function handleOperator(e) {
   operator = e;
   previousValue = currentValue;
   currentValue = ""
+}
+
+function handleDelete() {
+}
+
+function handleDecimal() {
+  
 }
