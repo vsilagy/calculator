@@ -51,7 +51,7 @@ h1 {
 .calc-keys {
   background-color: var(--key-bg);
   display: grid;
-  align-content: center;
+  /* align-content: center; */
   grid-template-columns: repeat(4, 75px);
   grid-template-rows: repeat(5, 45px);
   padding: 1rem;
@@ -61,6 +61,7 @@ h1 {
 
 .calc-keys > button {
   font-size: 1.5rem;
+  text-align: center;
   color: var(--blue-font);
   background-color: var(--key-light);
   padding: 8px;
