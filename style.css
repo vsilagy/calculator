@@ -9,14 +9,14 @@
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family: "Spartan", sans-serif;
   font-weight: 700;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   background-color: var(--bg-color);
   display: flex;
   justify-content: center;
@@ -25,20 +25,22 @@ body {
 }
 
 h1 {
+  font-size: 2rem;
   color: var(--key-light);
+  margin-bottom: .5em;
 }
 
 .display {
   background-color: var(--screen-color);
   color: var(--key-light);
-  height: 100px;
+  height: 2.5em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
   font-size: 2.5rem;
-  padding: 10px 16px 0;
-  margin-bottom: 1rem;
+  padding: 0.625em .750em 0;
+  margin-bottom: .5em;
   border: none;
   outline: none;
   border-radius: 8px;
@@ -51,20 +53,21 @@ h1 {
 .calc-keys {
   background-color: var(--key-bg);
   display: grid;
-  /* align-content: center; */
   grid-template-columns: repeat(4, 75px);
   grid-template-rows: repeat(5, 45px);
-  padding: 1rem;
+  padding: 1em;
   border-radius: 8px;
   gap: 1rem;
 }
 
 .calc-keys > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.5rem;
-  text-align: center;
   color: var(--blue-font);
   background-color: var(--key-light);
-  padding: 8px;
+  padding: .5em;
   border: none;
   outline: none;
   border-radius: 8px;
@@ -78,21 +81,18 @@ h1 {
 #del {
   background-color: var(--key-blue);
   color: var(--key-light);
-  font-size: 1rem;
 }
 
 #reset {
   grid-column: span 2;
   background-color: var(--key-blue);
   color: var(--key-light);
-  font-size: 1rem;
 }
 
 #equal {
   grid-column: span 2;
   background-color: var(--key-red);
   color: var(--key-light);
-  font-size: 1rem;
 }
 
 .footer {
@@ -101,18 +101,46 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 0.5rem;
+  gap: .625em;
+  padding: 0.5em;
   font-size: 1rem;
   color: var(--key-light);
 }
 
 .github-logo {
-  height: 1.5em;
+  height: 1.5rem;
   transition: transform 0.4s ease-in-out;
   filter: invert(100%);
 }
 
 .github-logo:hover {
   transform: rotateY(0.5turn) scale(1.4);
+}
+
+@media (max-width: 450px) and (orientation: portrait) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  .display {
+    font-size: 1.75rem;
+  }
+
+  .display .previous-display {
+    font-size: .875rem;
+  }
+
+  .calc-keys {
+    grid-template-columns: repeat(4, 60px);
+    grid-template-rows: repeat(5, 36px);
+    gap: .625rem;
+  }
+  
+  .calc-keys > button {
+    font-size: 1rem;
+  }
+
+  .footer {
+    font-size: .75rem;
+  } 
 }
