@@ -78,10 +78,6 @@ function calculate() {
   operator = "";
 }
 
-function updateDisplay() {
-  // if the number is longer than 10 
-}
-
 function handleNumber(e) {
   currentNum += e;
 }
