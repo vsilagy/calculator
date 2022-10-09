@@ -17,7 +17,7 @@ numKeys.forEach((key) => {
     currentDisplay.textContent = currentNum;
 
     if (e.target.innerText === ".") {
-      handleDecimal()
+      handleDecimal();
     }
   });
 });
@@ -51,28 +51,27 @@ delKey.addEventListener("click", () => {
   currentDisplay.textContent = currentNum;
 });
 
-
 function calculate() {
   let computation;
   let prev = parseFloat(previousNum);
   let current = parseFloat(currentNum);
   if (isNaN(prev) || isNaN(current)) return;
   switch (operator) {
-      case "+":
-        computation = prev + current;
-        break;
-      case "-":
-        computation = prev - current;
-        break;
-      case "×":
-        computation = prev * current;
-        break;
-      case "÷":
-        computation = prev / current;
-        break;
-      default:
-        return;
-    }
+    case "+":
+      computation = prev + current;
+      break;
+    case "-":
+      computation = prev - current;
+      break;
+    case "×":
+      computation = prev * current;
+      break;
+    case "÷":
+      computation = prev / current;
+      break;
+    default:
+      return;
+  }
   currentNum = computation;
   previousNum = "";
   operator = "";
@@ -85,7 +84,7 @@ function handleNumber(e) {
 function handleOperator(e) {
   operator = e;
   previousNum = currentNum;
-  currentNum = ""
+  currentNum = "";
 }
 
 function handleDelete() {
